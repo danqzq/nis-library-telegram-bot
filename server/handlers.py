@@ -204,12 +204,12 @@ def callback_inline(call):
         on_search(call.message)
     elif json_action["name"] == ActionCode.NEXT_PAGE:
         user = get_user(call.message)
-        search_and_display_books(call, json_action["args"], lambda: bot.answer_callback_query(
+        search_and_display_books(call.message, json_action["args"], lambda: bot.answer_callback_query(
             call.id, YOU_REACHED_THE_END[user.language]))
         return
     elif json_action["name"] == ActionCode.PREV_PAGE:
         user = get_user(call.message)
-        search_and_display_books(call, json_action["args"], lambda: bot.answer_callback_query(
+        search_and_display_books(call.message, json_action["args"], lambda: bot.answer_callback_query(
             call.id, YOU_REACHED_THE_START[user.language]))
         return
     elif json_action["name"] == ActionCode.BOOK:
